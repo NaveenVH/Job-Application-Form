@@ -1,0 +1,28 @@
+#mainform {
+  display: block;
+  margin-top: 20%;
+  width: 120%;
+  margin-left: 50%;
+  border: #779ebd 2px solid;
+  border-radius: 10px;
+  background: #779ebd;
+  padding: 2%;
+}
+
+label {
+  color: aliceblue;
+}
+
+#formname {
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+}
+
+.invalid-feedback {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+  display: inline;
+}
