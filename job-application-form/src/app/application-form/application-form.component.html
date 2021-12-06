@@ -5,99 +5,100 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputFirstname">First Name</label>
+      <span class="required-asterisk">*</span>
       <input formControlName="firstName" type="text" class="form-control" id="inputFirstname" placeholder="First Name">
       <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+        <div *ngIf="f.firstName.errors">{{getValidationMessage(f.firstName.errors)}}</div>
       </div>
     </div>
     <div class="form-group col-md-6">
       <label for="inputLastname">Last Name</label>
+      <span class="required-asterisk">*</span>
       <input formControlName="lastName" type="text" class="form-control" id="inputLastname" placeholder="Last Name">
       <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-        <div *ngIf="f.lastName.errors.required">Last Name is required </div>
+        <div *ngIf="f.lastName.errors">{{getValidationMessage(f.lastName.errors)}}</div>
       </div>
     </div>
   </div>
   <div class="form-group">
     <label for="inputJobTitle">Job Title</label>
+    <span class="required-asterisk">*</span>
     <select formControlName="jobTitle" class="custom-select">
-      <option value="">Select Job Title</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+      <option value="" disabled selected>Select</option>
+      <option *ngFor="let job of jobsList" [value]="job">{{job}}</option>
     </select>
     <div *ngIf="submitted && f.jobTitle.errors" class="invalid-feedback">
-      <div *ngIf="f.jobTitle.errors.required">Job Title is required</div>
+      <div *ngIf="f.jobTitle.errors">{{getValidationMessage(f.jobTitle.errors)}}</div>
     </div>
   </div>
   <div class="form-group">
     <label for="inputExperience">Total Experience in Months</label>
+    <span class="required-asterisk">*</span>
     <input formControlName="experience" type="text" class="form-control" id="inputExperience"
       placeholder="Experience in Months" />
     <div *ngIf="submitted && f.experience?.errors" class="invalid-feedback">
-      <div *ngIf="f.experience?.errors?.required">Total Experience is required</div>
+      <div *ngIf="f.experience.errors">{{getValidationMessage(f.experience.errors)}}</div>
     </div>
   </div>
   <div class="form-group">
     <label for="inputLocation">Preferred Location</label>
+    <span class="required-asterisk">*</span>
     <select formControlName="location" class="custom-select">
-      <option value="">Select Location</option>
-      <option value="1">Location 1</option>
-      <option value="2">Location 2</option>
-      <option value="3">Location 3</option>
+      <option value="" disabled selected>Select</option>
+      <option *ngFor="let location of jobLocations" [value]="location">{{location}}</option>
     </select>
     <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
-      <div *ngIf="f.location.errors.required">Preferred Location is required</div>
+      <div *ngIf="f.location.errors">{{getValidationMessage(f.location.errors)}}</div>
     </div>
   </div>
   <div class="form-group">
     <label for="inputVacancyNews">Where did you hear about the vacancy?</label>
+    <span class="required-asterisk">*</span>
     <select formControlName="infoSource" class="custom-select">
-      <option value="">Information Source</option>
-      <option value="1">Source 1</option>
-      <option value="2">Source 2</option>
-      <option value="3">Source 3</option>
-      <option value="4">None</option>
+      <option value="" disabled selected>Select</option>
+      <option *ngFor="let source of infoSource" [value]="source">{{source}}</option>
     </select>
     <div *ngIf="submitted && f.infoSource.errors" class="invalid-feedback">
-      <div *ngIf="f.infoSource.errors.required">Information Source is required</div>
+      <div *ngIf="f.infoSource.errors">{{getValidationMessage(f.infoSource.errors)}}</div>
     </div>
   </div>
   <div class="form-group">
     <label for="inputNoticePeriod">Notice period in current organization</label>
+    <span class="required-asterisk">*</span>
     <input formControlName="noticePeriod" type="text" class="form-control" id="inputNoticePeriod"
       placeholder="Notice period in days">
     <div *ngIf="submitted && f.noticePeriod.errors" class="invalid-feedback">
-      <div *ngIf="f.noticePeriod.errors.required">Notice period is required</div>
+      <div *ngIf="f.noticePeriod.errors">{{getValidationMessage(f.noticePeriod.errors)}}</div>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-2">
       <label for="inputCountryCode">Code</label>
+      <span class="required-asterisk">*</span>
       <select formControlName="countryCode" class="custom-select">
-        <option value="">+00</option>
-        <option value="1">+91</option>
-        <option value="2">+92</option>
-        <option value="3">+93</option>
+        <option value="" disabled selected>Select</option>
+        <option *ngFor="let code of codes" [value]="code.dialcode">{{code.dialcode}}</option>
       </select>
       <div *ngIf="submitted && f.countryCode.errors" class="invalid-feedback">
-        <div *ngIf="f.countryCode.errors.required">Country Code is required</div>
+        <div *ngIf="f.countryCode.errors">{{getValidationMessage(f.countryCode.errors)}}</div>
       </div>
     </div>
     <div class="form-group col-md-10">
       <label for="inputPhoneNumber">Phone Number</label>
+      <span class="required-asterisk">*</span>
       <input formControlName="phoneNumber" type="text" class="form-control" id="inputPhoneNumber"
         placeholder="Phone Number">
       <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-        <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
+        <div *ngIf="f.phoneNumber.errors">{{getValidationMessage(f.phoneNumber.errors)}}</div>
       </div>
     </div>
   </div>
   <div class="form-group">
     <label for="inputEmail">Email ID</label>
+    <span class="required-asterisk">*</span>
     <input formControlName="email" type="text" class="form-control" id="inputEmail" placeholder="Enter your Email">
     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors">{{getValidationMessage(f.email.errors)}}</div>
     </div>
     <div *ngIf="f.email.touched && f.email.status !== 'VALID'" class="invalid-feedback">
       <div>Email is invalid</div>
@@ -105,54 +106,55 @@
   </div>
   <div class="form-group">
     <label for="inputExperience">Address Line 1</label>
+    <span class="required-asterisk">*</span>
     <input formControlName="address1" type="text" class="form-control" id="inputExperience"
       placeholder="Address Line 1">
     <div *ngIf="submitted && f.address1.errors" class="invalid-feedback">
-      <div *ngIf="f.address1.errors.required">Address Line 1 is required</div>
+      <div *ngIf="f.address1.errors">{{getValidationMessage(f.address1.errors)}}</div>
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress2">Address Line 2</label>
-    <input formControlName="address2" type="text" class="form-control" id="inputAddress2" placeholder="Address Line 1">
+    <input formControlName="address2" type="text" class="form-control" id="inputAddress2" placeholder="Address Line 2">
   </div>
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="inputCity">City</label>
+      <span class="required-asterisk">*</span>
       <input formControlName="city" type="text" class="form-control" id="inputCity">
       <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-        <div *ngIf="f.city.errors.required">City is required</div>
-      </div>
-    </div>
-    <div class="form-group col-md-3">
-      <label for="inputState">State</label>
-      <select formControlName="state" id="inputState" class="form-control">
-        <option selected>Select</option>
-        <option value="1">State 1</option>
-        <option value="2">State 2</option>
-        <option value="3">State 3</option>
-      </select>
-      <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-        <div *ngIf="f.state.errors.required">State is required</div>
+        <div *ngIf="f.city.errors">{{getValidationMessage(f.city.errors)}}</div>
       </div>
     </div>
     <div class="form-group col-md-3">
       <label for="inputCountry">Country</label>
-      <select formControlName="country" id="inputState" class="form-control">
-        <option selected>Select</option>
-        <option value="1">Country 1</option>
-        <option value="2">Country 2</option>
-        <option value="3">Country 3</option>
+      <span class="required-asterisk">*</span>
+      <select formControlName="country" id="inputState" class="custom-select form-control"
+        (change)="countrySelect($event.target)">
+        <option value="" disabled selected>Select Country</option>
+        <option *ngFor="let country of countries" [value]="country.country">{{country.country}}</option>
       </select>
       <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-        <div *ngIf="f.country.errors.required">Country is required</div>
+        <div *ngIf="f.country.errors">{{getValidationMessage(f.country.errors)}}</div>
+      </div>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputState">State</label>
+      <span class="required-asterisk">*</span>
+      <select formControlName="state" id="inputState" class="custom-select form-control">
+        <option value="" disabled selected>Select State</option>
+        <option *ngFor="let state of states" [value]="state">{{state}}</option>
+      </select>
+      <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+        <div *ngIf="f.state.errors">{{getValidationMessage(f.state.errors)}}</div>
       </div>
     </div>
     <div class="form-group col-md-2">
       <label for="inputZip">Zip</label>
+      <span class="required-asterisk">*</span>
       <input formControlName="zip" type="text" class="form-control" id="inputZip">
       <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
-        <div *ngIf="f.zip.errors.required">Zip is required</div>
-        <div *ngIf="minLengthValidator(f.zip.errors)">Minimum length for zipcode is {{f.zip.errors.minlength.requiredLength}}</div>
+        <div *ngIf="f.zip.errors">{{getValidationMessage(f.zip.errors)}}</div>
       </div>
     </div>
   </div>
@@ -160,15 +162,22 @@
     <div class="form-check">
       <input formControlName="acceptTerms" class="form-check-input" type="checkbox" id="gridCheck">
       <label class="form-check-label" for="gridCheck">
-        Consent
+        Give Your Consent
       </label>
+      <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">
+        <div *ngIf="f.acceptTerms.errors">{{getValidationMessage(f.acceptTerms.errors)}}</div>
+      </div>
     </div>
   </div>
   <div class="form-group form-inline">
     <label class="btn btn-secondary btn-file">
-       <input name="file" formControlName="imageInput" type="file" (change)="onFileChange($event)">
-       <!-- <input type="hidden" name="fileHidden" /> Validation Field -->
+      <input name="file" formControlName="imageInput" type="file" (change)="onFileChange($event)">
+      <!-- <input type="hidden" name="fileHidden" /> Validation Field -->
     </label>
+    <div *ngIf="submitted && f.imageInput.errors" class="invalid-feedback">
+      <div *ngIf="f.imageInput.errors.required">Please Upload File</div>
+      <div *ngIf="f.imageInput.errors.invalidFile">File format should be Excel or PDF</div>
+    </div>
   </div>
   <!-- <div *ngIf="filesSelected">
     <h2>Upload Progress</h2>
