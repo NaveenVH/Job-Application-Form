@@ -183,5 +183,5 @@
     <h2>Upload Progress</h2>
     <pre>{{uploadProgress$ | async | json}}</pre>
   </div> -->
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" [disabled]="disableSubmit">Submit</button>
 </form>

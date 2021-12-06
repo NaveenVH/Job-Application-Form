@@ -30,6 +30,7 @@ export class ApplicationFormComponent implements OnInit {
   public infoSource!: string[];
   public codes: CountryCodes[];
   public validFileSelected = false;
+  public disableSubmit = false;
   filesSelected = false;
   private resp: any;
   private alphabeticPattern = "^[ a-zA-Z][a-zA-Z ]*$";
@@ -97,14 +98,17 @@ export class ApplicationFormComponent implements OnInit {
         //   },
         //   (error) => console.log(error)
         // )
-
+        this.disableSubmit = true;
         this.storageService.UploadFile(this.file).subscribe(
           (response) => {
             this.resp = response;
             this.resumeUrl = this.resp.resumeUrl;
-            console.log(this.resumeUrl);
+            this.disableSubmit = false;
           },
-          (error) => console.log(error)
+          (error) => {
+            this.disableSubmit = false;
+            alert("Error Occured during File Upload");
+          }
         )
       }
     }
@@ -138,8 +142,12 @@ export class ApplicationFormComponent implements OnInit {
     this.databaseService.SaveToDatabase(this.applicationForm.value, this.resumeUrl).subscribe(
       (response) => {
         console.log(response);
+        alert("Thanks for applying for job with us!");
       },
-      (error) => console.log(error)
+      (error) => {
+        console.log(error)
+        alert("Error Occured during submission. Please retry.");
+      }
     );
   }
 
